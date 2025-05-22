@@ -1,0 +1,14 @@
+echo "\033[1m\033[1;33m⚡️  pre-push hook running  ⚡️\033[0m"
+
+### check which branch
+branch=$(git symbolic-ref --short HEAD)
+if [[ "$branch" == "mainn" ]]; then
+  echo "Please, don't directly push to main branch!"
+  exit 1
+fi
+### run tests
+pnpm test:coverage
+### run build
+pnpm build:package
+### check for console logs
+grep -r "console\.log" src && echo "Remove console.log!" && exit 1 || echo "No console.log found."
