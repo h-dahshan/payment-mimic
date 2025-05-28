@@ -16,7 +16,7 @@
 
     "declaration": true,
     "declarationDir": "dist",
-    "declarationMap": true,
+    "declarationMap": false,
     "emitDeclarationOnly": true,
 
     "outDir": "dist",
