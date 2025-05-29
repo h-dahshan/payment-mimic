@@ -37,6 +37,7 @@ export default defineConfig(
           // set this value later, break if not met!
           // functions: 100,
         },
+        exclude: ["src/**/*.{types,d}.ts"],
         include: ["src/**/!(*index).[jt]s?(x)"],
       },
     },
