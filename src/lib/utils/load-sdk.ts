@@ -1,5 +1,11 @@
 import { Sdk } from "@/_types/sdk";
-import { SdkLoader } from "./load-sdk.types";
+
+import { SdkLoader } from "@/_types/sdk";
+declare global {
+  interface Window {
+    sdkLoader?: SdkLoader;
+  }
+}
 
 // the domain on which we host assets, privately hosted
 export const ORIGIN = "https://example.com";

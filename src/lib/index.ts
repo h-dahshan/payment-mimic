@@ -1,1 +1,1 @@
-export { loadSdk } from "./utils/load-sdk";
+export { loadSdk } from "./utils";
