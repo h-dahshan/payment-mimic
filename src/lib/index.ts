@@ -1,2 +1,1 @@
-export { TestComponent } from "./components";
-export { useTest } from "./hooks";
+export { loadSdk } from "./utils";

@@ -11,10 +11,11 @@ export default defineConfig(
     plugins: [
       react(),
       dts({
-        rollupTypes: true,
+        // rollupTypes: true, // bundles all types in single file
         include: ["src/lib"],
-        // exclude: [],
+        exclude: ["src/lib/**/*.spec.{ts,tsx}"],
         // outDir: "dist/types",
+
         tsconfigPath: path.join(__dirname, "tsconfig.package.json"),
       }),
     ],
@@ -36,6 +37,7 @@ export default defineConfig(
           // set this value later, break if not met!
           // functions: 100,
         },
+        exclude: ["src/**/*.{types,d}.ts"],
         include: ["src/**/!(*index).[jt]s?(x)"],
       },
     },
@@ -43,19 +45,27 @@ export default defineConfig(
     build: {
       lib: {
         name: "payment-mimic",
-        formats: ["es"],
-        entry: path.resolve(__dirname, "src/lib"),
-        fileName: (format) => `payment-mimic.${format}.js`,
+        formats: ["es", "cjs"],
+        entry: {
+          index: path.resolve(__dirname, "src/lib/index.ts"),
+          components: path.resolve(__dirname, "src/lib/components/index.ts"),
+          hooks: path.resolve(__dirname, "src/lib/hooks/index.ts"),
+        },
+        fileName: (format, entryName) => `${entryName}.${format}.js`,
       },
+
       rollupOptions: {
-        external: ["react", "react-dom"],
+        external: ["react", "react-dom", "react/jsx-runtime"],
         output: {
           globals: {
             react: "React",
             "react-dom": "ReactDOM",
           },
+          preserveModules: true,
+          preserveModulesRoot: "src/lib",
         },
       },
+
       sourcemap: true,
       emptyOutDir: true,
     },
