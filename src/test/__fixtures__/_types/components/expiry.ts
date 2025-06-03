@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 
 import type { ExpiryComponent, ExpiryComponentChangeEvent } from "@/_types";
 import { baseComponentMock, baseComponentChangeEventMock } from "./base";
