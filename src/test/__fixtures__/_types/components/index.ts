@@ -1,4 +1,3 @@
-export * from "./base";
 export * from "./number";
 export * from "./expiry";
 export * from "./cvv";
