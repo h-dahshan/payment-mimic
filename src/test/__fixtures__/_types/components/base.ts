@@ -1,8 +1,4 @@
-import type {
-  ComponentType,
-  BaseComponent,
-  BaseComponentChangeEvent,
-} from "@/_types";
+import type { BaseComponent, BaseChangeEvent } from "@/_types";
 
 export const baseComponentMock: BaseComponent = {
   mount: () => {},
@@ -12,8 +8,8 @@ export const baseComponentMock: BaseComponent = {
   clear: () => {},
 };
 
-export const baseComponentChangeEventMock: BaseComponentChangeEvent = {
-  componentType: "number" as ComponentType,
+export const baseChangeEventMock: BaseChangeEvent<"number"> = {
+  componentType: "number",
   value: "",
   isEmpty: true,
   isCompleted: false,

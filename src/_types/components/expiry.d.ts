@@ -1,87 +1,33 @@
-import { BaseComponent, BaseComponentChangeEvent } from "./base";
-
-export interface ExpiryComponentChangeEvent extends BaseComponentChangeEvent {
-  componentType: "expiry";
-}
+import { BaseComponent, EventsTypesMap } from "./index";
 
 export interface ExpiryComponent extends BaseComponent {
   /**
-   * mount event handlers, on each, once per lifecycle, off
+   * attaches events on expiry component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "mount",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  once(
-    eventType: "mount",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  off(
-    eventType: "mount",
-    handler?: (event: { elementType: "expiry" }) => void
+  on<E extends keyof EventsTypesMap<"expiry">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"expiry">[E]) => unknown
   ): ExpiryComponent;
 
   /**
-   * focus event handlers, on each, once per lifecycle, off
+   * attaches an event once on expiry component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "focus",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  once(
-    eventType: "focus",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  off(
-    eventType: "focus",
-    handler?: (event: { elementType: "expiry" }) => void
+  once<E extends keyof EventsTypesMap<"expiry">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"expiry">[E]) => unknown
   ): ExpiryComponent;
 
   /**
-   * change event handlers, on each, once per lifecycle, off
+   * removes attached event from expiry component
+   * @param eventType event type
+   * @param handler callback
    */
-  on(
-    eventType: "change",
-    handler: (event: ExpiryComponentChangeEvent) => void
-  ): ExpiryComponent;
-  once(
-    eventType: "change",
-    handler: (event: ExpiryComponentChangeEvent) => void
-  ): ExpiryComponent;
-  off(
-    eventType: "change",
-    handler?: (event: ExpiryComponentChangeEvent) => void
-  ): ExpiryComponent;
-
-  /**
-   * blur event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "blur",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  once(
-    eventType: "blur",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  off(
-    eventType: "blur",
-    handler?: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-
-  /**
-   * escape event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "escape",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  once(
-    eventType: "escape",
-    handler: (event: { elementType: "expiry" }) => void
-  ): ExpiryComponent;
-  off(
-    eventType: "escape",
-    handler?: (event: { elementType: "expiry" }) => void
+  off<E extends keyof EventsTypesMap<"expiry">>(
+    eventType: E,
+    handler?: (event: EventsTypesMap<"expiry">[E]) => unknown
   ): ExpiryComponent;
 }

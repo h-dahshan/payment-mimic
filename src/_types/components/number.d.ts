@@ -1,87 +1,42 @@
-import { BaseComponent, BaseComponentChangeEvent } from "./base";
+import { BaseComponent, EventsTypesMap } from "./index";
 
-export interface NumberComponentChangeEvent extends BaseComponentChangeEvent {
-  componentType: "number";
-}
-
+/**
+ * generic methods on, once, and off
+ *  - EventsTypesMap of T="number" -> has events whose types inside are "number"
+ *  - for E which extends keys of EventsTypesMap, which are the spread of event types union
+ *    mount, blur, change, etc...
+ *  - now the generic method, will take eventType and handler of this eventType
+ *    will be mapped automatically
+ *  - implement this interface, create an instance, and try calling these methods
+ */
 export interface NumberComponent extends BaseComponent {
   /**
-   * mount event handlers, on each, once per lifecycle, off
+   * attaches events on number component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "mount",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  once(
-    eventType: "mount",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  off(
-    eventType: "mount",
-    handler?: (event: { elementType: "number" }) => void
+  on<E extends keyof EventsTypesMap<"number">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"number">[E]) => unknown
   ): NumberComponent;
 
   /**
-   * focus event handlers, on each, once per lifecycle, off
+   * attaches an event once on number component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "focus",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  once(
-    eventType: "focus",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  off(
-    eventType: "focus",
-    handler?: (event: { elementType: "number" }) => void
+  once<E extends keyof EventsTypesMap<"number">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"number">[E]) => unknown
   ): NumberComponent;
 
   /**
-   * change event handlers, on each, once per lifecycle, off
+   * removes attached event from number component
+   * @param eventType event type
+   * @param handler callback
    */
-  on(
-    eventType: "change",
-    handler: (event: NumberComponentChangeEvent) => void
-  ): NumberComponent;
-  once(
-    eventType: "change",
-    handler: (event: NumberComponentChangeEvent) => void
-  ): NumberComponent;
-  off(
-    eventType: "change",
-    handler?: (event: NumberComponentChangeEvent) => void
-  ): NumberComponent;
-
-  /**
-   * blur event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "blur",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  once(
-    eventType: "blur",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  off(
-    eventType: "blur",
-    handler?: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-
-  /**
-   * escape event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "escape",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  once(
-    eventType: "escape",
-    handler: (event: { elementType: "number" }) => void
-  ): NumberComponent;
-  off(
-    eventType: "escape",
-    handler?: (event: { elementType: "number" }) => void
+  off<E extends keyof EventsTypesMap<"number">>(
+    eventType: E,
+    handler?: (event: EventsTypesMap<"number">[E]) => unknown
   ): NumberComponent;
 }

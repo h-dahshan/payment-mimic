@@ -1,87 +1,33 @@
-import { BaseComponent, BaseComponentChangeEvent } from "./base";
-
-export interface CardComponentChangeEvent extends BaseComponentChangeEvent {
-  componentType: "card";
-}
+import { BaseComponent, EventsTypesMap } from "./index";
 
 export interface CardComponent extends BaseComponent {
   /**
-   * mount event handlers, on each, once per lifecycle, off
+   * attaches events on card component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "mount",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  once(
-    eventType: "mount",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  off(
-    eventType: "mount",
-    handler?: (event: { elementType: "card" }) => void
+  on<E extends keyof EventsTypesMap<"card">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"card">[E]) => unknown
   ): CardComponent;
 
   /**
-   * focus event handlers, on each, once per lifecycle, off
+   * attaches an event once on card component
+   * @param eventType event type
+   * @param handler event handler
    */
-  on(
-    eventType: "focus",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  once(
-    eventType: "focus",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  off(
-    eventType: "focus",
-    handler?: (event: { elementType: "card" }) => void
+  once<E extends keyof EventsTypesMap<"card">>(
+    eventType: E,
+    handler: (event: EventsTypesMap<"card">[E]) => unknown
   ): CardComponent;
 
   /**
-   * change event handlers, on each, once per lifecycle, off
+   * removes attached event from card component
+   * @param eventType event type
+   * @param handler callback
    */
-  on(
-    eventType: "change",
-    handler: (event: CardComponentChangeEvent) => void
-  ): CardComponent;
-  once(
-    eventType: "change",
-    handler: (event: CardComponentChangeEvent) => void
-  ): CardComponent;
-  off(
-    eventType: "change",
-    handler?: (event: CardComponentChangeEvent) => void
-  ): CardComponent;
-
-  /**
-   * blur event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "blur",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  once(
-    eventType: "blur",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  off(
-    eventType: "blur",
-    handler?: (event: { elementType: "card" }) => void
-  ): CardComponent;
-
-  /**
-   * escape event handlers, on each, once per lifecycle, off
-   */
-  on(
-    eventType: "escape",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  once(
-    eventType: "escape",
-    handler: (event: { elementType: "card" }) => void
-  ): CardComponent;
-  off(
-    eventType: "escape",
-    handler?: (event: { elementType: "card" }) => void
+  off<E extends keyof EventsTypesMap<"card">>(
+    eventType: E,
+    handler?: (event: EventsTypesMap<"card">[E]) => unknown
   ): CardComponent;
 }

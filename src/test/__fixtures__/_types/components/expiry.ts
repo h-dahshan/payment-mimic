@@ -2,38 +2,38 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import type { ExpiryComponent, ExpiryComponentChangeEvent } from "@/_types";
-import { baseComponentMock, baseComponentChangeEventMock } from "./base";
+import type { ExpiryComponent, BaseChangeEvent } from "@/_types";
+import { baseComponentMock, baseChangeEventMock } from "./base";
 
 export const expiryComponentMock: ExpiryComponent = {
   ...baseComponentMock,
   on(
     eventType: "mount" | "focus" | "blur" | "escape" | "change",
     handler:
-      | ((event: { elementType: "expiry" }) => void)
-      | ((event: ExpiryComponentChangeEvent) => void)
+      | ((event: { elementType: "expiry" }) => unknown)
+      | ((event: BaseChangeEvent<"expiry">) => unknown)
   ): ExpiryComponent {
     return this;
   },
   once(
     eventType: "mount" | "focus" | "blur" | "escape" | "change",
     handler:
-      | ((event: { elementType: "expiry" }) => void)
-      | ((event: ExpiryComponentChangeEvent) => void)
+      | ((event: { elementType: "expiry" }) => unknown)
+      | ((event: BaseChangeEvent<"expiry">) => unknown)
   ): ExpiryComponent {
     return this;
   },
   off(
     eventType: "mount" | "focus" | "blur" | "escape" | "change",
     handler?:
-      | ((event: { elementType: "expiry" }) => void)
-      | ((event: ExpiryComponentChangeEvent) => void)
+      | ((event: { elementType: "expiry" }) => unknown)
+      | ((event: BaseChangeEvent<"expiry">) => unknown)
   ): ExpiryComponent {
     return this;
   },
 };
 
-export const expiryComponentChangeEventMock: ExpiryComponentChangeEvent = {
-  ...baseComponentChangeEventMock,
+export const expiryChangeEventMock: BaseChangeEvent<"expiry"> = {
+  ...baseChangeEventMock,
   componentType: "expiry",
 };
