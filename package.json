@@ -38,6 +38,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
+    "test:live": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:coverage:open": "vitest --coverage --ui",
     "prettify": "prettier . --write",

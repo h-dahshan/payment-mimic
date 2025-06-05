@@ -1,7 +1,7 @@
 const config = {
-  "**/*.{js,ts,jsx,tsx}": ["pnpm lint", "pnpm prettify"],
-  "**/*.{json,md,html,css,scss}": ["pnpm prettify"],
-  "**/*": "pnpm prettify",
+  "**/*": ["pnpm prettify"],
+  "**/*.{js,ts,jsx,tsx}": ["eslint --fix"],
+  // "**/*.{json,md,html,css,scss}": ["pnpm prettify"],
 };
 
 export default config;

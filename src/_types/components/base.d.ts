@@ -26,11 +26,15 @@ export interface BaseComponent {
   clear();
 }
 
-export interface BaseComponentChangeEvent {
+/**
+ * generic interface accepts T, T is from components union
+ *  the resulting interface will contain componentType of T
+ */
+export interface BaseChangeEvent<T extends ComponentType> {
   /**
    * the type of the component triggering the event
    */
-  componentType: ComponentType;
+  componentType: T;
   /**
    * current value of the component
    */
